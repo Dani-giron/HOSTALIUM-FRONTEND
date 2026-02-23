@@ -2,8 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { XCircle, CheckCircle, Loader2, Calendar, Clock, Users, MapPin } from 'lucide-react';
 import { formatearFechaLarga, extraerFechaHora } from '../utils/dateFormatter';
-
-const BASE = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+import { API_URL } from '../config/api.js';
 
 export default function CancelarReserva() {
   const [searchParams] = useSearchParams();
@@ -40,7 +39,7 @@ export default function CancelarReserva() {
       
       console.log(`🔍 [FRONTEND] Cancelando reserva ID: ${id}, Token: ${token.substring(0, 8)}...`);
       
-      const response = await fetch(`${BASE}/api/cancelar?id=${id}&token=${token}`, {
+      const response = await fetch(`${API_URL}/api/cancelar?id=${id}&token=${token}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',

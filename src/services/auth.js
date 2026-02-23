@@ -1,11 +1,11 @@
-const BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000'
+import { API_URL } from '../config/api.js';
 
 export const getToken = () => localStorage.getItem('token')
 export const setToken = (t) => localStorage.setItem('token', t)
 export const clearToken = () => localStorage.removeItem('token')
 
 export async function login(email, password) {
-  const res = await fetch(`${BASE.replace(/\/$/, '')}/api/auth/login`, {
+  const res = await fetch(`${API_URL}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })

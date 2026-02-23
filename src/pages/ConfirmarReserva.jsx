@@ -2,8 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { CheckCircle, XCircle, Loader2, Calendar, Clock, Users, MapPin } from 'lucide-react';
 import { formatearFechaLarga, extraerFechaHora } from '../utils/dateFormatter';
-
-const BASE = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+import { API_URL } from '../config/api.js';
 
 export default function ConfirmarReserva() {
   const [searchParams] = useSearchParams();
@@ -40,7 +39,7 @@ export default function ConfirmarReserva() {
       
       console.log(`🔍 [FRONTEND] Confirmando reserva ID: ${id}, Token: ${token.substring(0, 8)}...`);
       
-      const response = await fetch(`${BASE}/api/confirmar?id=${id}&token=${token}`, {
+      const response = await fetch(`${API_URL}/api/confirmar?id=${id}&token=${token}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -62,7 +61,7 @@ export default function ConfirmarReserva() {
           setMensaje('Tu reserva ya estaba confirmada anteriormente');
           // Intentar obtener los datos de la reserva confirmada
           try {
-            const reservaResponse = await fetch(`${BASE}/api/reservas/${id}`, {
+            const reservaResponse = await fetch(`${API_URL}/api/reservas/${id}`, {
               headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token') || ''}`,
               },

@@ -1,9 +1,11 @@
 /**
  * Configuración base para llamadas API
  */
+import { API_URL as VITE_API_URL } from '../config/api.js';
 
-const BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
-export const API_BASE = BASE.replace(/\/$/, '');
+// Normalizar la URL (eliminar barra final si existe)
+const BASE = VITE_API_URL ? VITE_API_URL.replace(/\/$/, '') : '';
+export const API_BASE = BASE;
 
 /**
  * Obtiene los headers de autenticación

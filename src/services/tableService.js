@@ -1,5 +1,6 @@
-const BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
-const API_URL = `${BASE.replace(/\/$/, '')}/api/mesas`;
+import { API_URL } from '../config/api.js';
+
+const API_URL_MESAS = `${API_URL}/api/mesas`;
 
 const getToken = () => localStorage.getItem('token');
 
@@ -21,7 +22,7 @@ const handleResponse = async (response) => {
 export const getTables = async () => {
   try {
     const token = getToken();
-    const response = await fetch(API_URL, {
+    const response = await fetch(API_URL_MESAS, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -52,7 +53,7 @@ export const getTables = async () => {
 export const createTable = async (tableData) => {
   try {
     const token = getToken();
-    const response = await fetch(API_URL, {
+    const response = await fetch(API_URL_MESAS, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -97,7 +98,7 @@ export const createTable = async (tableData) => {
 export const updateTable = async (id, tableData) => {
   try {
     const token = getToken();
-    const response = await fetch(`${API_URL}/${id}`, {
+    const response = await fetch(`${API_URL_MESAS}/${id}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -124,7 +125,7 @@ export const updateTable = async (id, tableData) => {
 export const deleteTable = async (id) => {
   try {
     const token = getToken();
-    const response = await fetch(`${API_URL}/${id}`, {
+    const response = await fetch(`${API_URL_MESAS}/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`

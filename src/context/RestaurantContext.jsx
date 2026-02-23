@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { API_URL } from '../config/api.js';
 
 const RestaurantContext = createContext(null);
 
@@ -19,11 +20,10 @@ export function RestaurantProvider({ children }) {
 
     // Si ya tenemos el nombre en localStorage, no hacer fetch inmediatamente
     // Pero sí hacerlo en background para actualizar si es necesario
-    const base = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000').replace(/\/$/, '');
     
     // Usar requestIdleCallback si está disponible para no bloquear el render
     const fetchRestaurantName = () => {
-      fetch(`${base}/api/auth/me`, {
+      fetch(`${API_URL}/api/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
         // Prioridad baja para no bloquear renderizado
         priority: 'low',

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Clock, Users, Phone, Mail, Calendar, X, Edit, Trash2, CheckCircle } from "lucide-react";
 import { useNotifications } from "../../context/NotificationContext";
 import { formatearHora } from "../../utils/dateFormatter";
+import { API_URL } from "../../config/api.js";
 
-const BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:3000";
-const API_URL = `${BASE.replace(/\/$/, "")}/api/waitlist`;
+const API_URL_WAITLIST = `${API_URL}/api/waitlist`;
 
 export default function ListarWaitlist() {
   const { showToast } = useNotifications();
@@ -45,7 +45,7 @@ export default function ListarWaitlist() {
         query.append("fechaDeseada", fechaSeleccionada);
         if (filtros.nombre) query.append("nombre", filtros.nombre);
 
-        const url = `${API_URL}?${query}`;
+        const url = `${API_URL_WAITLIST}?${query}`;
 
         const res = await fetch(url, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -114,7 +114,7 @@ export default function ListarWaitlist() {
     setDeleting(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`${API_URL}/${entryToDelete.id}`, {
+      const res = await fetch(`${API_URL_WAITLIST}/${entryToDelete.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -158,7 +158,7 @@ export default function ListarWaitlist() {
         0
       ));
 
-      const res = await fetch(`${API_URL}/${editEntry.id}`, {
+      const res = await fetch(`${API_URL_WAITLIST}/${editEntry.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -193,7 +193,7 @@ export default function ListarWaitlist() {
           query.append("fechaDeseada", fechaSeleccionada);
           if (filtros.nombre) query.append("nombre", filtros.nombre);
 
-          const url = `${API_URL}?${query}`;
+          const url = `${API_URL_WAITLIST}?${query}`;
           const res = await fetch(url, {
             headers: token ? { Authorization: `Bearer ${token}` } : {},
           });
@@ -229,7 +229,7 @@ export default function ListarWaitlist() {
     setProcesandoWaitlist(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`${API_URL}/procesar-todas`, {
+      const res = await fetch(`${API_URL_WAITLIST}/procesar-todas`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -269,7 +269,7 @@ export default function ListarWaitlist() {
           query.append("fechaDeseada", fechaSeleccionada);
           if (filtros.nombre) query.append("nombre", filtros.nombre);
 
-          const url = `${API_URL}?${query}`;
+          const url = `${API_URL_WAITLIST}?${query}`;
 
           const res = await fetch(url, {
             headers: token ? { Authorization: `Bearer ${token}` } : {},
