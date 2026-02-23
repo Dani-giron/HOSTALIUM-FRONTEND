@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostalium - Gestión de Reservas</title>
+    
+    <!-- Preload de fuentes para evitar CLS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      rel="preload" 
+      href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" 
+      as="style" 
+    />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" 
+      rel="stylesheet" 
+      media="print" 
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link 
+        href="https://fonts.googleapis.com/css2?family=Quantico:wght@400;700&display=swap" 
+        rel="stylesheet" 
+      />
+    </noscript>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Título crítico renderizado inmediatamente para LCP -->
+      <div style="display: none;" id="critical-title">
+        <h1 style="
+          font-size: 4.5rem;
+          font-weight: 800;
+          text-align: center;
+          background: linear-gradient(to right, #a5b4fc, #c084fc, #60a5fa);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          color: transparent;
+          margin: 0;
+          padding: 2rem 0;
+        ">Hostalium</h1>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,721 @@
+/* ============================================================
+   🔠 FUENTE GLOBAL
+   Nota: La fuente se carga en index.html con preload para mejor rendimiento
+============================================================ */
+/* @import removido - ahora se carga en index.html con preload */
+
+/* ============================================================
+   🧠 BASE DE TAILWIND
+============================================================ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ============================================================
+   🧭 RESETEO GLOBAL
+============================================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================
+    FONDO GLOBAL — elegante, violeta suave
+============================================================ */
+html {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Quantico", Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #e2e2f2;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color-scheme: dark;
+
+  /* Fondo violeta grisáceo sutil */
+  background-color: #13111a;
+  background-image:
+    radial-gradient(800px 600px at 80% 20%, rgba(140, 90, 255, 0.12) 0%, transparent 70%),
+    radial-gradient(600px 400px at 20% 80%, rgba(111, 57, 255, 0.1) 0%, transparent 80%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  /* Optimización de renderizado */
+  font-display: swap;
+}
+
+#root {
+  width: 100%;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   🪩 app-bg
+============================================================ */
+.app-bg {
+  background-color: #14111c;
+  background-image:
+    radial-gradient(800px 600px at 75% 25%, rgba(143, 95, 255, 0.15) 0%, transparent 70%),
+    radial-gradient(600px 400px at 25% 75%, rgba(111, 57, 255, 0.1) 0%, transparent 80%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #eaeaff;
+}
+
+
+/* ============================================================
+   💠 TARJETAS
+============================================================ */
+.card {
+  width: 100%;
+  background: rgba(25, 20, 45, 0.9);
+  border-radius: 22px;
+  padding: 24px 20px;
+  backdrop-filter: blur(12px) saturate(1.1);
+  border: 1px solid rgba(143, 95, 255, 0.15);
+  box-shadow: 0 0 25px rgba(111, 57, 255, 0.12);
+  /* Optimización: will-change para animaciones */
+  will-change: transform;
+}
+
+/* Contenedor centrado */
+.card-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+
+/* ============================================================
+   🔤 TÍTULOS
+============================================================ */
+.card-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #b08cff, #7ad3ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* ============================================================
+   ✍️ INPUTS
+============================================================ */
+.field {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+/* Layout de 2 columnas para campos relacionados */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.label-text {
+  display: block;
+  font-size: 0.8rem;
+  color: rgba(230, 230, 255, 0.75);
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f5f5ff;
+  font-size: 0.9rem;
+  outline: none;
+  /* Optimización: solo transiciones de propiedades baratas */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  border-color: rgba(143, 95, 255, 0.5);
+  box-shadow: 0 0 10px rgba(143, 95, 255, 0.3);
+}
+
+/* ============================================================
+   📋 SELECT DROPDOWN
+============================================================ */
+select.estado-selector,
+select {
+  background-color: rgba(99, 102, 241, 0.15) !important;
+  color: #c7d2fe !important;
+  color-scheme: dark !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Estilos para las opciones del dropdown */
+select.estado-selector option,
+select option {
+  background-color: #1e1b3d !important;
+  background: #1e1b3d !important;
+  color: #f5f5ff !important;
+  padding: 8px 12px;
+}
+
+select.estado-selector option:checked,
+select.estado-selector option:hover,
+select option:checked,
+select option:hover {
+  background-color: rgba(99, 102, 241, 0.3) !important;
+  background: rgba(99, 102, 241, 0.3) !important;
+  color: #c7d2fe !important;
+}
+
+/* Estilos adicionales para mejorar la visibilidad */
+select.estado-selector:focus,
+select:focus {
+  background-color: rgba(99, 102, 241, 0.25) !important;
+}
+
+
+/* ============================================================
+   ⚡ BOTONES
+============================================================ */
+.btn-confirm {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: linear-gradient(135deg, #7e47ff, #9d76ff);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(111, 57, 255, 0.25);
+  border: none;
+  /* Optimización: solo transiciones de propiedades baratas (transform, opacity) */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
+}
+
+.btn-confirm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(111, 57, 255, 0.35);
+}
+
+.btn-confirm:active {
+  transform: scale(0.98);
+}
+
+
+/* ============================================================
+   🔙 ENLACE VOLVER
+============================================================ */
+.link-back {
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  color: rgba(200, 200, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  /* Optimización: color es barato, pero mejor usar opacity si es posible */
+  transition: color 0.2s ease;
+}
+
+.link-back:hover {
+  color: rgba(143, 95, 255, 0.9);
+}
+
+
+/* ============================================================
+   ✅ TOAST (notis notiiii)
+============================================================ */
+.toast {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: rgba(35, 25, 55, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(143, 95, 255, 0.15);
+  color: #f4eaff;
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   🔔 TOAST NOTIFICATIONS
+============================================================ */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.toast-notification {
+  min-width: 300px;
+  max-width: 400px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(35, 25, 55, 0.95), rgba(50, 35, 75, 0.95));
+  border: 1px solid rgba(143, 95, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(143, 95, 255, 0.2);
+  backdrop-filter: blur(10px);
+  animation: slideInRight 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: auto;
+  /* Optimización: will-change para animaciones */
+  will-change: transform, opacity;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.toast-icon {
+  color: #4ade80;
+  flex-shrink: 0;
+}
+
+.toast-message {
+  color: #f4eaff;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  /* Optimización: solo transiciones de propiedades baratas */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.toast-success {
+  border-color: rgba(74, 222, 128, 0.4);
+}
+
+.toast-error {
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.toast-error .toast-icon {
+  color: #f87171;
+}
+
+.toast-warning {
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.toast-warning .toast-icon {
+  color: #fbbf24;
+}
+
+.toast-info {
+  border-color: rgba(96, 165, 250, 0.4);
+}
+
+.toast-info .toast-icon {
+  color: #60a5fa;
+}
+
+.toast-clickable {
+  cursor: pointer;
+  /* Optimización: solo transiciones de propiedades baratas */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.toast-clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(143, 95, 255, 0.3);
+}
+
+.toast-hint {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  margin-left: 8px;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   🪟 MODAL - ANIMACIONES PREMIUM
+============================================================ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.2s ease-out;
+}
+
+.modal-overlay-closing {
+  opacity: 0;
+}
+
+.modal-container {
+  background: linear-gradient(135deg, rgba(35, 25, 55, 0.98), rgba(50, 35, 75, 0.98));
+  border: 1px solid rgba(143, 95, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(143, 95, 255, 0.2);
+  /* backdrop-filter removido - muy costoso en móviles */
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: center;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  /* Optimización: will-change para animaciones */
+  will-change: transform, opacity;
+}
+
+.modal-container-closing {
+  opacity: 0;
+  transform: scale(0.96) translateY(10px);
+}
+
+/* Clases reutilizables para modales con Tailwind */
+.modal-overlay-base {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  padding: 12px;
+  animation: modalFadeIn 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+}
+
+.modal-overlay-base-closing {
+  opacity: 0;
+}
+
+.modal-content-base {
+  background: #1b1923;
+  width: 100%;
+  max-width: 384px;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.45);
+  color: white;
+  animation: modalSlideIn 0.25s ease-out forwards;
+  transform-origin: center;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.modal-content-base-closing {
+  opacity: 0;
+  transform: scale(0.96) translateY(10px);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid rgba(143, 95, 255, 0.2);
+}
+
+.modal-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-icon-success {
+  color: #4ade80;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f4eaff;
+  margin: 0;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  /* Optimización: solo transiciones de propiedades baratas */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(143, 95, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(143, 95, 255, 0.1);
+}
+
+.modal-info-item:last-child {
+  margin-bottom: 0;
+}
+
+.modal-info-icon {
+  color: rgba(143, 95, 255, 0.8);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.modal-info-label {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 4px;
+}
+
+.modal-info-value {
+  display: block;
+  font-size: 1rem;
+  color: #f4eaff;
+  font-weight: 500;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px 24px;
+  border-top: 1px solid rgba(143, 95, 255, 0.2);
+}
+
+.btn-modal-primary {
+  flex: 1;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #7e47ff, #9d76ff);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  /* Optimización: solo transiciones de propiedades baratas */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.btn-modal-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(111, 57, 255, 0.4);
+}
+
+.btn-modal-secondary {
+  flex: 1;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f4eaff;
+  border: 1px solid rgba(143, 95, 255, 0.3);
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  /* Optimización: solo transiciones de propiedades baratas */
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-modal-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(143, 95, 255, 0.5);
+}
+
+/* Animaciones premium para modales */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Animaciones stagger removidas - demasiadas animaciones simultáneas causan jank */
+
+/* ============================================================
+   📋 RESERVATION CARD - ANIMACIÓN DE ENTRADA
+============================================================ */
+.reservation-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease-out;
+  /* Optimización: will-change solo cuando se anima */
+}
+
+.reservation-card-new {
+  animation: reservationSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes reservationSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================================
+   📱 RESPONSIVIDAD Y OPTIMIZACIONES PARA MÓVILES
+============================================================ */
+
+/* Optimizaciones para tablets y móviles (768px y menos) */
+@media (max-width: 768px) {
+  /* Eliminar backdrop-filter costoso en móviles */
+  .card {
+    backdrop-filter: none;
+    background: rgba(25, 20, 45, 0.95); /* Más opaco para compensar */
+  }
+
+  /* Reducir backdrop-filter en modales */
+  .modal-overlay {
+    backdrop-filter: blur(2px); /* Reducido de 4px a 2px */
+  }
+
+  .modal-overlay-base {
+    backdrop-filter: blur(2px); /* Reducido de 4px a 2px */
+  }
+
+  /* Reducir backdrop-filter en toasts */
+  .toast-notification {
+    backdrop-filter: blur(4px); /* Reducido de 10px a 4px */
+  }
+
+  /* Simplificar gradientes radiales en móviles (más eficiente) */
+  body {
+    background-image: radial-gradient(600px 400px at 50% 50%, rgba(140, 90, 255, 0.15) 0%, transparent 70%);
+  }
+
+  .app-bg {
+    background-image: radial-gradient(600px 400px at 50% 50%, rgba(143, 95, 255, 0.18) 0%, transparent 70%);
+  }
+}
+
+/* Optimizaciones específicas para móviles pequeños */
+@media (max-width: 420px) {
+  .card {
+    padding: 24px;
+    border-radius: 18px;
+  }
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .toast-container {
+    right: 10px;
+    left: 10px;
+  }
+
+  .toast-notification {
+    min-width: auto;
+    backdrop-filter: none; /* Eliminar completamente en móviles pequeños */
+    background: rgba(35, 25, 55, 0.98); /* Más opaco */
+  }
+
+  .modal-container {
+    margin: 10px;
+    max-width: calc(100% - 20px);
+  }
+
+  .modal-overlay {
+    backdrop-filter: none; /* Eliminar completamente en móviles pequeños */
+  }
+
+  .modal-overlay-base {
+    backdrop-filter: none; /* Eliminar completamente en móviles pequeños */
+  }
+}
