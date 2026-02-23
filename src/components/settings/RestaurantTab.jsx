@@ -203,7 +203,7 @@ const RestaurantTab = () => {
 
       <Grid container spacing={3}>
         {/* Información del Negocio */}
-        <Grid item xs={12}>
+        <Grid xs={12}>
           <Card>
             <CardContent>
               <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
@@ -211,7 +211,7 @@ const RestaurantTab = () => {
               </Typography>
               
               <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
+                <Grid xs={12} md={6}>
                   <TextField
                     fullWidth
                     label="Nombre del Restaurante"
@@ -222,7 +222,7 @@ const RestaurantTab = () => {
                   />
                 </Grid>
                 
-                <Grid item xs={12} md={6}>
+                <Grid xs={12} md={6}>
                   <TextField
                     fullWidth
                     label="Email de Contacto"
@@ -234,7 +234,7 @@ const RestaurantTab = () => {
                   />
                 </Grid>
                 
-                <Grid item xs={12} md={6}>
+                <Grid xs={12} md={6}>
                   <TextField
                     fullWidth
                     label="Teléfono"
@@ -245,7 +245,7 @@ const RestaurantTab = () => {
                   />
                 </Grid>
                 
-                <Grid item xs={12} md={6}>
+                <Grid xs={12} md={6}>
                   <TextField
                     fullWidth
                     label="Dirección"
@@ -260,7 +260,7 @@ const RestaurantTab = () => {
           </Card>
         </Grid>
         {/* Configuración de Aforo */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Card sx={{ height: '100%' }}>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
@@ -283,7 +283,7 @@ const RestaurantTab = () => {
         </Grid>
 
         {/* Configuración de Reservas */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Card sx={{ height: '100%' }}>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
@@ -317,7 +317,7 @@ const RestaurantTab = () => {
         </Grid>
 
         {/* Configuración de Autoasignador */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Card sx={{ height: '100%' }}>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
@@ -345,7 +345,7 @@ const RestaurantTab = () => {
         </Grid>
 
         {/* Resumen de Configuración */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <Card sx={{ height: '100%' }}>
             <CardContent>
               <Typography variant="h6" gutterBottom>

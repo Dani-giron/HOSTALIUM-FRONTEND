@@ -15,6 +15,7 @@ import Home from "./pages/Home";
 const CrearReserva = lazy(() => import("./pages/CrearReserva"));
 const VerReservas = lazy(() => import("./pages/VerReservas"));
 const VerWaitlist = lazy(() => import("./pages/VerWaitlist"));
+const Mesas = lazy(() => import("./pages/Mesas"));
 const Settings = lazy(() => import("./pages/Settings"));
 const Login = lazy(() => import("./pages/Login"));
 const ConfirmarReserva = lazy(() => import("./pages/ConfirmarReserva"));
@@ -51,6 +52,7 @@ function AppContent() {
               <Route path="/crear-reserva" element={<ProtectedRoute><CrearReserva /></ProtectedRoute>} />
               <Route path="/reservas" element={<ProtectedRoute><VerReservas /></ProtectedRoute>} />
               <Route path="/waitlist" element={<ProtectedRoute><VerWaitlist /></ProtectedRoute>} />
+              <Route path="/mesas" element={<ProtectedRoute><Mesas /></ProtectedRoute>} />
               <Route path="/configuracion" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
             </Routes>
           </Suspense>

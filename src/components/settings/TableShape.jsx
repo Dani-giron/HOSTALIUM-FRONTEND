@@ -7,6 +7,7 @@ const TableShape = ({
   onSelect,
   onChange,
   onEdit,
+  onRightClick,
   isAdmin = true,
   showNumbers = true,
 }) => {
@@ -21,7 +22,7 @@ const TableShape = ({
   }, [isSelected, isAdmin]);
 
   const getTableColor = () => {
-    if (!shapeProps) return '#A5D8FF';
+    if (!shapeProps) return '#4CAF50'; // Verde por defecto para disponible
 
     const status = shapeProps.status ||
       (shapeProps.disponible === false ? 'unavailable' : 'available');
@@ -29,15 +30,42 @@ const TableShape = ({
     switch (status) {
       case 'occupied':
       case 'ocupada':
-        return '#FF6B6B';  // Rojo para ocupada
+        return '#F44336';  // Rojo Material Design para ocupada
+      case 'pending':
       case 'reserved':
       case 'reservada':
-        return '#4ECDC4';  // Verde azulado para reservada
+      case 'en espera':
+        return '#FF9800';  // Ámbar Material Design para en espera/reservada
       case 'unavailable':
       case 'no disponible':
-        return '#CCCCCC'; // Gris para no disponible
+        return '#9E9E9E'; // Gris Material Design para no disponible
+      case 'available':
+      case 'disponible':
       default:
-        return '#A5D8FF';  // Azul claro para disponible
+        return '#4CAF50';  // Verde Material Design para disponible
+    }
+  };
+
+  const getStatusText = () => {
+    const status = shapeProps.status ||
+      (shapeProps.disponible === false ? 'unavailable' : 'available');
+
+    switch (status) {
+      case 'occupied':
+      case 'ocupada':
+        return 'Ocupada';
+      case 'pending':
+      case 'reserved':
+      case 'reservada':
+      case 'en espera':
+        return 'En Espera';
+      case 'unavailable':
+      case 'no disponible':
+        return 'No Disp.';
+      case 'available':
+      case 'disponible':
+      default:
+        return 'Disponible';
     }
   };
 
@@ -62,6 +90,12 @@ const TableShape = ({
         rotation={rotation}
         onClick={onSelect}
         onTap={onSelect}
+        onContextMenu={(e) => {
+          e.evt.preventDefault();
+          if (onRightClick) {
+            onRightClick(e, shapeProps);
+          }
+        }}
         draggable={isAdmin}
         onDragEnd={(e) => {
           onChange({
@@ -113,11 +147,11 @@ const TableShape = ({
           />
         )}
 
-        {/* Capacidad */}
+        {/* Información de estado y capacidad */}
         <Text
-          text={`${shapeProps.ocupadaAhora ? 'Ocupada' : 'Libre'} • ${shapeProps.capacidad || 4} pers.`}
-          fontSize={12}
-          fontFamily="Arial"
+          text={`${getStatusText()} • ${shapeProps.capacidad || 4} pers.`}
+          fontSize={11}
+          fontFamily="Arial, sans-serif"
           fill="#333"
           align="center"
           verticalAlign="middle"
@@ -126,6 +160,40 @@ const TableShape = ({
           width={width}
           height={20}
         />
+
+        {/* Información adicional si está ocupada */}
+        {(shapeProps.ocupadaAhora || shapeProps.status === 'occupied') && (
+          <Text
+            text={`${shapeProps.ocupantes || 0}/${shapeProps.capacidad || 4}`}
+            fontSize={10}
+            fontFamily="Arial, sans-serif"
+            fill="white"
+            align="center"
+            verticalAlign="middle"
+            x={-width / 2}
+            y={-height / 2 + 5}
+            width={width}
+            height={15}
+            style={{ fontWeight: 'bold' }}
+          />
+        )}
+
+        {/* Información de reserva si está reservada */}
+        {(shapeProps.status === 'pending' || shapeProps.status === 'reserved') && (
+          <Text
+            text="⏰ Reservada"
+            fontSize={10}
+            fontFamily="Arial, sans-serif"
+            fill="white"
+            align="center"
+            verticalAlign="middle"
+            x={-width / 2}
+            y={-height / 2 + 5}
+            width={width}
+            height={15}
+            style={{ fontWeight: 'bold' }}
+          />
+        )}
 
         {/* Botón de edición (solo para administradores) */}
         {isAdmin && (

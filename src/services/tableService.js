@@ -95,6 +95,47 @@ export const createTable = async (tableData) => {
   }
 };
 
+export const updateTableStatus = async (id, status, additionalData = {}) => {
+  try {
+    // Mapear estados al campo disponible del backend
+    let disponible = true;
+    
+    switch (status) {
+      case 'available':
+      case 'disponible':
+        disponible = true;
+        break;
+      case 'occupied':
+      case 'ocupada':
+        disponible = false;
+        break;
+      case 'pending':
+      case 'reserved':
+      case 'reservada':
+      case 'en espera':
+        disponible = false; // Reservada no está disponible para nuevas reservas
+        break;
+      case 'unavailable':
+      case 'no disponible':
+        disponible = false;
+        break;
+      default:
+        disponible = true;
+    }
+
+    // Usar el endpoint existente updateTable con el estado mapeado
+    const updateData = {
+      disponible,
+      ...additionalData
+    };
+    
+    return await updateTable(id, updateData);
+  } catch (error) {
+    console.error('Error updating table status:', error);
+    throw error;
+  }
+};
+
 export const updateTable = async (id, tableData) => {
   try {
     const token = getToken();

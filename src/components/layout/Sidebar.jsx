@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Home, Calendar, List, Settings, LogOut, Clock } from 'lucide-react';
+import { Menu, X, Home, Calendar, List, Settings, LogOut, Clock, Utensils } from 'lucide-react';
 import { clearToken } from '../../services/auth';
 
 const Sidebar = ({ isOpen: isOpenProp, onToggle }) => {
@@ -43,6 +43,7 @@ const Sidebar = ({ isOpen: isOpenProp, onToggle }) => {
     else if (path === '/crear-reserva') setActiveItem('crear-reserva');
     else if (path === '/reservas') setActiveItem('reservas');
     else if (path === '/waitlist') setActiveItem('waitlist');
+    else if (path === '/mesas') setActiveItem('mesas');
   }, [location]);
 
   const menuItems = [
@@ -50,6 +51,7 @@ const Sidebar = ({ isOpen: isOpenProp, onToggle }) => {
     { id: 'crear-reserva', icon: <Calendar size={24} />, text: 'Crear Reserva', path: '/crear-reserva' },
     { id: 'reservas', icon: <List size={24} />, text: 'Ver Reservas', path: '/reservas' },
     { id: 'waitlist', icon: <Clock size={24} />, text: 'Lista de Espera', path: '/waitlist' },
+    { id: 'mesas', icon: <Utensils size={24} />, text: 'Mesas', path: '/mesas' },
   ];
 
   const handleLogout = () => {
